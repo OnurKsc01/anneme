@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canım Anneme</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec;
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Kitap Yapısı */
+        .book {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            perspective: 1500px;
+            margin-bottom: 30px;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            transform-origin: left; 
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            padding: 20px;
+            box-sizing: border-box;
+            border-left: 8px solid #f8bbd0;
+            backface-visibility: hidden;
+        }
+
+        /* Resim Alanı */
+        .img-area {
+            width: 100%;
+            height: 220px;
+            background-color: #f3e5f5;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ce93d8;
+        }
+
+        .img-ares {
+            width: 300px;
+            height: 250px;
+            background-color: #f3e5f5;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ce93d8;
+        }
+
+        .img-ares img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+
+        .img-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Yazı Alanı */
+        .text-area {
+            text-align: center;
+            color: #555;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #ad1457;
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* BUTONLAR */
+        .controls {
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-family: 'Nunito', sans-serif;
+            background-color: #ec407a;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(236, 64, 122, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+        }
+
+        /* Z-Index (Sayfa sırası) */
+        #p1 { z-index: 4; }
+        #p2 { z-index: 3; }
+        #p3 { z-index: 2; }
+        #p4 { z-index: 1; }
+
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+
+        .heart {
+            color: #ec407a;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="benial.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="book" id="book">
+        
+        <div class="page" id="p1">
+            <div class="img-area">
+                <img src="annem1.jpeg" alt="">
+            </div>
+            <div class="text-area">
+                <h1>Canım Anneme</h1>
+                <p>Bu küçük kitap, senin ne kadar harika bir anne olduğunu hatırlatmak için...</p>
+                <div class="heart">♥</div>
+                <p style="font-size: 0.8em; color: #999; margin-top: 20px;">Sayfaları çevirmek için butona bas.</p>
+            </div>
+        </div>
+
+        <div class="page" id="p2">
+            <div class="img-area">
+                <img src="annem.jpg" alt="">
+            </div>
+            <div class="text-area">
+                <h1>Seninle Her An</h1>
+                <p>Beni büyütürken gösterdiğin sabır, sevgi ve şefkat için sana minnettarım.</p>
+                <p>Senin gülüşün benim dünyamı aydınlatıyor.</p>
+            </div>
+        </div>
+
+        <div class="page" id="p3">
+            <div class="img-ares">
+                <img src="annem2.jpeg" alt="">
+            </div>
+            <div class="text-area">
+                <h1>Güçlü Kadın</h1>
+                <p>Her zorlukta arkamda duran, düşsem kaldıran sensin.</p>
+                <p>Sen sadece annem değil, aynı zamanda en iyi sırdaşımsın.</p>
+            </div>
+        </div>
+
+        <div class="page" id="p4">
+            <div class="img-ares">
+                <img src="annem3.jpeg" alt="">
+            </div>
+            <div class="text-area">
+                <h1>İyi ki Varsın!</h1>
+                <p>Seni kelimelerin anlatabileceğinden çok daha fazla seviyorum.</p>
+                <p>İyi ki varsın iyi ki annemsin canım benim, meleğim.</p>
+                <div class="heart">♥ ♥ ♥</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button onclick="goBack()">Geri</button>
+        <button onclick="goNext()">İleri</button>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 4;
+        let musicStarted = false;
+
+        function playMusic() {
+            var audio = document.getElementById("bgMusic");
+            if (!musicStarted) {
+                audio.volume = 0.5; // Ses seviyesi
+                
+                // Müzik çalma isteği (Promise yapısı ile hata önleme)
+                var playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        console.log("Müzik çalıyor.");
+                        musicStarted = true;
+                    })
+                    .catch(error => {
+                        console.log("Tarayıcı henüz izni vermedi, tıklama bekleniyor.");
+                    });
+                }
+            }
+        }
+
+        function goNext() {
+            playMusic(); // Her ileri tuşuna basıldığında müziği tetikle (garanti olsun)
+            if (currentPage < totalPages) {
+                document.getElementById('p' + currentPage).classList.add('flipped');
+                currentPage++;
+            }
+        }
+
+        function goBack() {
+            if (currentPage > 1) {
+                currentPage--;
+                document.getElementById('p' + currentPage).classList.remove('flipped');
+            }
+        }
+    </script>
+
+</body>
+</html>
